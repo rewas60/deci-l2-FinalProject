@@ -25,6 +25,39 @@ def point_indictor(added_points):
     global points
     points += added_points 
     print(f"your pints is {points}")
+#repeat function
+def repeat(par1=None, par2=None, par3=None, par4=None,repeats_time=1):
+    if par2 is None and par3 is None and par4 is None:
+        for i in range(repeats_time):
+            type_text(par1)
+            print()
+    elif par3 is None and par4 is None:
+        type_text(par1)
+        print()
+        time.sleep(1)
+        type_text(par2)
+        print()
+    elif par4 is None:
+        type_text(par1)
+        print()
+        time.sleep(1)
+        type_text(par2)
+        print()
+        time.sleep(1)
+        type_text(par3)
+        print()
+    else:
+        type_text(par1)
+        print()
+        time.sleep(1)
+        type_text(par2)
+        print()
+        time.sleep(1)
+        type_text(par3)
+        print()
+        time.sleep(1)
+        type_text(par4)
+        print()
 Pl_Name = input("Enter your name : ")
 intro_text = f"""Hello {Pl_Name} in Chronicles of the Galactic Undead: Year 3020
 In this game, you are the only human on Earth and you have been attacked
@@ -41,17 +74,7 @@ sc3 = "C)stay at home and the robots won't find you"
 sc4 = "D)find some friends or some people and collobrate to buy spaceship"
 type_text(introx)
 print()
-time.sleep(2)
-type_text(sc1)
-print()
-time.sleep(1)
-type_text(sc2)
-print()
-time.sleep(1)
-type_text(sc3)
-print()
-time.sleep(1)
-type_text(sc4)
+repeat(sc1,sc2,sc3,sc4)
 print()
 time.sleep(3)
 des_1 = input("your choice is : ")
@@ -61,42 +84,43 @@ sc1_ch1 = "A)go to forest and find some resources"
 sc1_ch2 = "B)go to down town and search for weapons"
 sc1_ch3 = "C)search in your home"
 
-sc1_ch1_ch1 = "pick up some sticks"
-sc1_ch1_ch2 = "ignore the sticks"
-sc1_ch1_ch3 = "climb the tree and pick up some leaves"
+sc1_ch1_ch1 = "A)pick up some sticks"
+sc1_ch1_ch2 = "B)ignore the sticks"
+sc1_ch1_ch3 = "C)climb the tree and pick up some leaves"
+
+sc1_ch1_des1_ch1 ="A)pick up a rock from floor and make pickaxe"
+sc1_ch1_des1_ch2 ="B)ignore this rock"
+sc1_ch1_des1_ch3 ="C)return home"
 print()
 if des_1 in ["a","A"]:
-    print(sc1)
-    type_text(sc1_ch1)
-    print()
-    time.sleep(1)
-    type_text(sc1_ch2)
-    print()
-    time.sleep(1)
-    type_text(sc1_ch3)
-    print()
-    time.sleep(1)
+    repeat(sc1_ch1,sc1_ch2,sc1_ch3)
     print()
     sc1_des1 = input("choose your next step : ")
     choices_check3(sc1_des1)
     if sc1_des1 in ["a","A"]:
         print("your choice is go to forest and find some resources")
         print()
-        type_text(sc1_ch1_ch1)
-        print()
-        time.sleep(1)
-        type_text(sc1_ch1_ch2)
-        print()
-        time.sleep(1)
-        type_text(sc1_ch1_ch3)
-        print()
-        time.sleep(1)
+        repeat(sc1_ch1_ch1,sc1_ch1_ch2,sc1_ch1_ch3)
         print()
         sc1_ch1_des1 = input("what is your next step : ")
         choices_check3(sc1_ch1_des1)
         if sc1_ch1_des1 in ["a","A"]:
             print("your choice is pick up some sticks")
             point_indictor(10)
+            print()
+            print()
+            repeat(sc1_ch1_des1_ch1,sc1_ch1_des1_ch2,sc1_ch1_des1_ch3)
+            print()
+            sc1_ch1_des1_des1 = input("what is your next dection : ")
+            if sc1_ch1_des1_ch1 in ["a","A"]:
+                print("you chose to pick up a rock from floor and make pickaxe")
+                point_indictor(10)
+            elif sc1_ch1_des1_ch1 in ["b","B"]:
+                print("you chose to ignore this rock")
+                point_indictor(0)
+            elif sc1_ch1_des1_ch1 in ["c","C"]:
+                print("you chose to return home")
+                point_indictor(-5)
         elif sc1_ch1_des1 in ["b","B"]:
             print("your choice is  to ignore the sticks ")
             point_indictor(0)
