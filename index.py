@@ -1,3 +1,4 @@
+
 import sys
 import random
 import time
@@ -9,49 +10,71 @@ import colored
 #\033[93m yellow
 #\033[91m red
 
-#function to change th color of the text
+#function section
+
+#####################################################################################################################
+
+#To color the text
+
 def coloric(sentence, the_word, color_code):
     colored_sentence = sentence.replace(the_word, f"{color_code}{the_word}\033[0m")
     return colored_sentence
 
 #delay function
+
 def type_text(text, delay=0.05):
     for char in text:
         print(char, end='', flush=True)
         time.sleep(delay)
 
 #choice checker function
-def choices_check4(des):
-    choices = ["a", "A", "b", "B", "c", "C", "d", "D"]
-    if des not in choices:
-        print(f"Please choose a valid answer. {des} is not valid.")
-        des_1 = input("Enter a valid choice: ")
-        print(f"Your choice is {des}")
 
-#check 3 choices
+
 def choices_check3(des):
     choices = ["a", "A", "b", "B", "c", "C"]
     if des not in choices:
         print(f"Please choose a valid answer. {des} is not valid.")
-        des_1 = input("Enter a valid choice: ")
-    print(f"Your choice is {des}")
+        des = input("Enter a valid choice: ")
+    else:
+        print(f"Your choice is {des}")
+        return des
 
 def choices_check2(des):
     choices = ["a", "A", "b", "B"]
     if des not in choices:
         print(f"Please choose a valid answer. {des} is not valid.")
-        des_1 = input("Enter a valid choice: ")
-    print(f"Your choice is {des}")
-
+        des = input("Enter a valid choice: ")
+    else:
+        print(f"Your choice is {des}")
+        return des
 points = 0
 
+#name checker
+
+def NAme():
+    while True:
+        name = input("Enter your name: ")
+    
+        if any(char.isdigit() for char in name):
+            print("Invalid name. Name cannot contain numbers.")
+            name = input("Enter your name: ")
+        else:
+            break
+
+
 #point indictour function
+
 def point_indictor(added_points):
     global points
     points += added_points 
-    print(f"your points is {points}")
+    print("=================================================")
+    print()
+    text_coloric(f"your points is {points}",text_c="\033[94m")
+    print()
+    print("=================================================")
 
 #a compination of type text and coloric
+
 def text_coloric(text_N1=None, text_N2=None, text_N3=None, text_N4=None, text_c="\033[92m"):
     colored_text_N1 = coloric(text_N1, text_N1, text_c) if text_N1 else None
     colored_text_N2 = coloric(text_N2, text_N2, text_c) if text_N2 else None
@@ -72,189 +95,1413 @@ def text_coloric(text_N1=None, text_N2=None, text_N3=None, text_N4=None, text_c=
         print()
 
 
-#repeat function
-def repeat(par1=None, par2=None, par3=None, par4=None,repeats_time=1):
-    if par2 is None and par3 is None and par4 is None:
-        for i in range(repeats_time):
-            type_text(par1)
-            print()
-    elif par3 is None and par4 is None:
-        type_text(par1)
-        print()
-        time.sleep(1)
-        type_text(par2)
-        print()
-    elif par4 is None:
-        type_text(par1)
-        print()
-        time.sleep(1)
-        type_text(par2)
-        print()
-        time.sleep(1)
-        type_text(par3)
-        print()
+#the choices gradiant
+
+def text_choices(text_a, text_b, text_c, text_d="", text_e="", text_f=""):
+    print(colored.fg("cyan"), end="")
+    print(text_a)
+    print(colored.fg("blue"), end="")
+    print(text_b)
+    print(colored.fg("magenta"), end="")
+    print(text_c)
+    if text_d:
+        print(colored.fg("yellow"), end="")
+        print(text_d)
+    if text_e:
+        print(colored.fg("green"), end="")
+        print(text_e)
+    if text_f:
+        print(colored.fg("red"), end="")
+        print(text_f)
+    print(colored.attr("reset"), end="")
+
+#paly again function
+
+def PlayAgain():
+    lol = input("Do you want to paly again (Y/N) : ")
+    choicesx = ["y", "Y", "n", "N"]
+    if lol not in choicesx:
+        print(f"Please choose a valid answer. {des} is not valid.")
+        des = input("Enter a valid choice: ")
     else:
-        type_text(par1)
-        print()
-        time.sleep(1)
-        type_text(par2)
-        print()
-        time.sleep(1)
-        type_text(par3)
-        print()
-        time.sleep(1)
-        type_text(par4)
-        print()
+        if lol in ["n","N"]:
+            text_coloric("see you later",text_c="\033[91m")
+            sys.exit
+        elif lol in ["Y",'y']:
+            play_game()
 
-Pl_Name = input("Enter your name : ")
-Pl_Nameic = coloric(Pl_Name,Pl_Name,"\033[92m")
-intro_text = f"""Hello {Pl_Nameic} in Chronicles of the Galactic Undead: Year 3020
-In this game, you are the only human on Earth and you have been attacked
-by a bunch of eveil robots. Your goal is to achieve 300 Points
-to buy a spaceship from the lab and reunite with your family on the Revenia planet.
-You can buy weapons and your points start at zero."""
+#####################################################################################################################
 
-type_text(intro_text)
+#Intro Function
 
-your_points=f"your points is {points}"
+#####################################################################################################################
 
-type_text(your_points)
-
-introx = "you are at your home and you need to make a step to forword to buy the space ship " 
-sc1 = coloric("A)go and find resources to make weapons to beat the robos","A)go and find resources to make weapons to beat the robos","\033[92m")
-sc2 = coloric("B)go and find resources to make spaceship","B)go and find resources to make spaceship","\033[92m")
-sc3 = coloric("C)stay at home and the robots won't find you","C)stay at home and the robots won't find you","\033[92m")
-sc4 = coloric("D)find some friends or some people and collobrate to buy spaceship","D)find some friends or some people and collobrate to buy spaceship","\033[92m")
-type_text(introx)
-print()
-text_coloric(sc1,sc2,sc3,sc4)
-print()
-
-time.sleep(3)
-des_1 = input("your choice is : ")
-time.sleep(2)
-choices_check4(des_1)
-
-print()
-
-if des_1 in ["a","A"]:
-    type_text("now you have to make step and move forwaord to get back to your family again make a good decion that may help you")
+def IntroFunction():
+    text_coloric("Welcome to Legends of Avaloria",text_c="\033[92m")
     print()
-    text_coloric("A)go to forest and find some resources","B)go to down town and search for weapons","C)climb the tree and pick up some leaves")
+    time.sleep(2)
+    NAme()
     print()
-    sc1_des1 = input("choose your next step : ")
-    choices_check3(sc1_des1)
-    if sc1_des1 in ["a","A"]:
-        print("your choice is go to forest and find some resources")
+    time.sleep(2)
+    Intro = f"""Hello in this game You are stuck in a mysterious world
+    and your goal is to find your way back home. Gain more points
+    and get in the lead in the leader board.Your starting points is zero.
+    Take care and choose the choices wisely
+    """
+    type_text(Intro)
+    
+    point_indictor(0)
+
+#####################################################################################################################
+
+#The Game Function
+
+#####################################################################################################################
+
+def play_game():
+    
+    IntroFunction()
+    
+    print()
+    print()
+
+    type_text(
+        "As you wake up, you find yourself in a dark forest with no memory of how you got there."
+    )
+    print()
+    sleep(1)
+
+    type_text("You see three paths in front of you.")
+    print()
+    sleep(1)
+
+    text_coloric(
+        "A) Take the path on the left",
+        "B) Take the path in the middle",
+        "C) Take the path on the right",
+    )
+    print()
+    sleep(1)
+
+    des_1 = input("Choose your path: ")
+    desl_des1 = choices_check3(des_1)
+
+    if desl_des1 in ["a", "A"]:
+        type_text("You chose the path on the left.")
         print()
-        text_coloric("A)pick up some sticks","B)ignore the sticks","C)climb the tree and pick up some leaves")
+        type_text("As you walk along the path, you come across a river.")
         print()
-        sc1_ch1_des1 = input("what is your next step : ")
-        choices_check3(sc1_ch1_des1)
-        if sc1_ch1_des1 in ["a","A"]:
-            print("your choice is pick up some sticks")
+        sleep(1)
+        point_indictor(random.randint(1, 25))
+
+        text_coloric(
+            "A) Try to swim across the river",
+            "B) Look for a bridge",
+            "C) Follow the river to find another way around",
+        )
+        print()
+        sleep(1)
+
+        des_2 = input("What do you want to do next? ")
+        desl_des2 = choices_check3(des_2)
+
+        if desl_des2 in ["a", "A"]:
+            type_text("You decided to swim across the river.")
+            print()
+            type_text(
+                "Unfortunately, the current was too strong and you got swept away."
+            )
+            print()
+            text_coloric("Game Over!", text_c="\033[91m")
+            print()
+            PlayAgain()
+
+        elif desl_des2 in ["b", "B"]:
+            type_text("You decided to look for a bridge.")
+            print()
+            point_indictor(random.randint(1, 25))
+            type_text(
+                "After searching for a while, you find a sturdy bridge and cross the river safely."
+            )
+            print()
             point_indictor(10)
             print()
+            text_choices(
+                "A) Continue along the path",
+                "B) Rest and recover your energy",
+                "C) Look for signs of civilization",
+            )
             print()
-            repeat("A)pick up a rock from floor and make pickaxe","B)ignore this rock","C)return home")
+            sc1_des2 = input("What do you want to do next? ")
+            desl_sc1_des2 = choices_check3(sc1_des2)
             print()
-            sc1_ch1_des1_ch1 = input("what is your next dection : ")
-            if sc1_ch1_des1_ch1 in ["a","A"]:
-                print("you chose to pick up a rock from floor and make pickaxe")
-                point_indictor(10)
+            if desl_sc1_des2 in ["a", "A"]:
+                type_text("You chose to continue along the path.")
                 print()
+                point_indictor(random.randint(1, 25))
+                type_text(
+                    "After walking for a while, you stumble upon a small village."
+                )
                 print()
-                type_text("now it is raining heavy so you have many choices and thing to do during the rain")
+                sleep(1)
+                text_coloric(
+                    "A) Explore the village",
+                    "B) Ask the villagers for help",
+                    "C) Find a place to rest",
+                )
                 print()
-                print()
-                text_coloric("A)return home","B)go to cave and mine it searching for resources until it stop raining")
-                sc1_ch1_des1_ch1_des = input("make a step forward : ")
-                print()
-                choices_check2(sc1_ch1_des1_ch1_des)
-                print()
-                if sc1_ch1_des1_ch1_des in ["A","a"]:
-                    type_text("your descion is to return home")
+                sleep(1)
+
+                sc1_ch1_des2 = input("What is your next step: ")
+                desl_sc1_ch1_des2 = choices_check3(sc1_ch1_des2)
+
+                if desl_sc1_ch1_des2 in ["a", "A"]:
+                    type_text("You decided to explore the village.")
                     print()
-                    type_text("while you are rturning to your home you found some robots")
+
+                    type_text("As you explore, you discover a hidden treasure chest.")
                     print()
+                    sleep(1)
+                    point_indictor(20)
                     print()
-                    text_coloric("A)walk like a robot so they wont hurt you","B)try to ignore the and hide from them","C)try to know if they an eveil robots or good ","D)fight them")
+                    type_text(
+                        "Congratulations! You found a treasure chest and gained 20 points!"
+                    )
                     print()
-                    sc1_ch1_des1_ch1_des_des = input("be strong and choose with withem : ")
-                    choices_check4(sc1_ch1_des1_ch1_des_des)
+                    type_text("Feeling accomplished, you continue your journey.")
                     print()
-                    if sc1_ch1_des1_ch1_des_des in ["a","A"]:
-                        type_text("your choice is walking like a robot so they wont hurt you")
+                    sleep(1)
+
+                    text_choices(
+                        "A) Follow the road out of the village",
+                        "B) Rest and recover your energy",
+                        "C) Ask the villagers for directions",
+                    )
+                    print()
+                    sc1_ch1_des2_ch1 = input("What is your next decision: ")
+                    desl_sc1_ch1_des2_ch1 = choices_check3(sc1_ch1_des2_ch1)
+                    print()
+
+                    if desl_sc1_ch1_des2_ch1 in ["a", "A"]:
+                        type_text("You chose to follow the road out of the village.")
                         print()
-                        text_coloric("unfortunetly they found you and you loosed",text_c="\033[91m")
-                        sys.exit
-                    elif sc1_ch1_des1_ch1_des_des in ["b","B"]:
+                        point_indictor(random.randint(1, 25))
+                        type_text(
+                            "After walking for a while, you see a familiar landmark."
+                        )
                         print()
-                        type_text("your choice is try to ignore the and hide from them")
+                        type_text("You have found your way back home!")
                         print()
-                        next_scenario1 = random.choice(["you crossed safely","they detected you "])
+                        type_text(
+                            "Congratulations! You have successfully completed the game."
+                        )
                         print()
-                        if next_scenario1 == "they detected you ":
-                            type_text(next_scenario1)
+                        sleep(1)
+                        text_coloric("Game Over!", text_c="\033[92m")
+                        print()
+                        PlayAgain()
+
+                    elif desl_sc1_ch1_des2_ch1 in ["b", "B"]:
+                        type_text("You decided to rest and recover your energy.")
+                        point_indictor(random.randint(1, 25))
+                        print()
+                        type_text(
+                            "After a good night's sleep, you wake up refreshed and ready to continue your journey."
+                        )
+                        print()
+                        text_choices(
+                            "A) Follow the road out of the village",
+                            "B) Ask the villagers for directions",
+                            "",
+                        )
+                        print()
+                        sc1_ch1_des2_ch1_ch1 = input("What is your next decision: ")
+                        desl_sc1_ch1_des2_ch1_ch1 = choices_check2(sc1_ch1_des2_ch1_ch1)
+                        print()
+
+                        if desl_sc1_ch1_des2_ch1_ch1 in ["a", "A"]:
+                            type_text(
+                                "You chose to follow the road out of the village."
+                            )
+                            point_indictor(random.randint(1, 25))
                             print()
-                            text_coloric("unfortunetly they found you and you loosed",text_c="\033[91m")
-                            sys.exit
-                        elif next_scenario1 == "you crossed safely":
+                            type_text(
+                                "After walking for a while, you see a familiar landmark."
+                            )
                             print()
-                            text_coloric(next_scenario1)
+                            type_text("You have found your way back home!")
                             print()
-                    elif sc1_ch1_des1_ch1_des_des in ["c","C"]:
+                            type_text(
+                                "Congratulations! You have successfully completed the game."
+                            )
+                            print()
+                            sleep(1)
+                            text_coloric("Game Over!", text_c="\033[92m")
+                            print()
+                            PlayAgain()
+
+                        elif desl_sc1_ch1_des2_ch1_ch1 in ["b", "B"]:
+                            type_text(
+                                "You decided to ask the villagers for directions."
+                            )
+                            point_indictor(random.randint(1, 25))
+                            print()
+                            type_text(
+                                "The villagers give you detailed instructions on how to get back home."
+                            )
+                            print()
+                            type_text(
+                                "Following their directions, you find your way back home!"
+                            )
+                            print()
+                            type_text(
+                                "Congratulations! You have successfully completed the game."
+                            )
+                            print()
+                            sleep(1)
+                            text_coloric("Game Over!", text_c="\033[92m")
+                            print()
+                            PlayAgain()
+                elif desl_sc1_ch1_des2 in ["b", "B"]:
+                    type_text("You decided to ask the villagers for help.")
+                    
+                    print()
+                    point_indictor(random.randint(1, 25))
+                    type_text(
+                        "The villagers offer their assistance and guide you back home."
+                    )
+                    print()
+                    type_text(
+                        "Congratulations! You have successfully completed the game."
+                    )
+                    print()
+                    sleep(1)
+                    text_coloric("Game Over!", text_c="\033[92m")
+                    print()
+                    PlayAgain()
+                elif desl_sc1_ch1_des2 in ["c", "C"]:
+                    type_text("You decided to find a place to rest.")
+                    print()
+                    point_indictor(random.randint(1, 25))
+                    type_text(
+                        "After a good night's sleep, you wake up refreshed and ready to continue your journey."
+                    )
+                    print()
+                    text_choices("A) Explore the village", "B) Ask the villagers for help","")
+                    print()
+                    sc1_ch1_des2_ch1 = input("What is your next decision: ")
+                    desl_sc1_ch1_des2_ch1 = choices_check2(sc1_ch1_des2_ch1)
+                    print()
+                    if desl_sc1_ch1_des2_ch1 in ["a", "A"]:
+                        type_text("You chose to explore the village.")
                         print()
-                        type_text("your choice is trying to know if they an eveil robots or good")
+                        point_indictor(random.randint(1, 25))
+                        type_text(
+                            "As you explore, you discover a hidden treasure chest."
+                        )
                         print()
-                    elif sc1_ch1_des1_ch1_des_des in ["d","D"]:
+                        sleep(1)
+                        point_indictor(20)
                         print()
-                        type_text(coloric("your choice is fightin them but surley the stronger  than you and they killed you","they killed you","\033[91m"))
+                        type_text(
+                            "Congratulations! You found a treasure chest and gained 20 points!"
+                        )
                         print()
-                        sys.exit
-                elif sc1_ch1_des1_ch1_des in ["B","b"]:
-                    type_text("your choice is going to cave and mine it searching for resources until it stop raining")
-            elif sc1_ch1_des1_ch1 in ["b","B"]:
-                print("you chose to ignore this rock")
-                point_indictor(0)
+                        type_text("Feeling accomplished, you continue your journey.")
+                        print()
+                        sleep(1)
+
+                        text_choices(
+                            "A) Follow the road out of the village",
+                            "B) Ask the villagers for directions",
+                            ".",
+                        )
+                        print()
+                        sc1_ch1_des2_ch1_ch1 = input("What is your next decision: ")
+                        desl_sc1_ch1_des2_ch1_ch1 = choices_check2(sc1_ch1_des2_ch1_ch1)
+                        print()
+
+                        if desl_sc1_ch1_des2_ch1_ch1 in ["a", "A"]:
+                            type_text(
+                                "You chose to follow the road out of the village."
+                            )
+                            point_indictor(random.randint(1, 25))
+                            print()
+                            type_text(
+                                "After walking for a while, you see a familiar landmark."
+                            )
+                            print()
+                            type_text("You have found your way back home!")
+                            print()
+                            type_text(
+                                "Congratulations! You have successfully completed the game."
+                            )
+                            print()
+                            sleep(1)
+                            text_coloric("Game Over!", text_c="\033[92m")
+                            print()
+                            PlayAgain()
+
+                        elif desl_sc1_ch1_des2_ch1_ch1 in ["b", "B"]:
+                            type_text(
+                                "You decided to ask the villagers for directions."
+                            )
+                            point_indictor(random.randint(1, 25))
+                            print()
+                            type_text(
+                                "The villagers give you detailed instructions on how to get back home."
+                            )
+                            print()
+                            type_text(
+                                "Following their directions, you find your way back home!"
+                            )
+                            print()
+                            type_text(
+                                "Congratulations! You have successfully completed the game."
+                            )
+                            print()
+                            sleep(1)
+                            text_coloric("Game Over!", text_c="\033[92m")
+                            print()
+                            PlayAgain()
+
+                    elif sc1_ch1_des2_ch1 in ["b", "B"]:
+                        type_text("You decided to ask the villagers for help.")
+                        point_indictor(random.randint(1, 25))
+                        print()
+                        type_text(
+                            "The villagers offer their assistance and guide you back home."
+                        )
+                        print()
+                        type_text(
+                            "Congratulations! You have successfully completed the game."
+                        )
+                        
+                        print()
+                        sleep(1)
+                        text_coloric("Game Over!", text_c="\033[92m")
+                        print()
+                        PlayAgain()
+
+            elif desl_sc1_des2 in ["b", "B"]:
+                type_text("You decided to rest and recover your energy.")
                 print()
-                print("now it is raining heavy you must make a important to choice about raining")
+                point_indictor(random.randint(1, 25))
+                type_text(
+                    "After a good night's sleep, you wake up refreshed and ready to continue your journey."
+                )
                 print()
+                text_choices("A) Explore the village", "B) Ask the villagers for help","")
                 print()
-                text_coloric("A) go to the cave until the morning or the rain finishes","B) continue your trip and water won't do any thing to you","C) see a tree and waint behind it until the rain finishes")
-            elif sc1_ch1_des1_ch1 in ["c","C"]:
-                print("you chose to return home")
-                point_indictor(-5)
-        elif sc1_ch1_des1 in ["b","B"]:
-            print("your choice is  to ignore the sticks ")
-            point_indictor(0)
+                sc1_des2_ch1 = input("What is your next decision: ")
+                desl_sc1_des2_ch1 = choices_check2(sc1_des2_ch1)
+                print()
+
+                if desl_sc1_des2_ch1 in ["a", "A"]:
+                    type_text("You chose to explore the village.")
+                    print()
+                    point_indictor(random.randint(1, 25))
+                    type_text("As you explore, you discover a hidden treasure chest.")
+                    print()
+                    sleep(1)
+                    point_indictor(20)
+                    print()
+                    type_text(
+                        "Congratulations! You found a treasure chest and gained 20 points!"
+                    )
+                    print()
+                    type_text("Feeling accomplished, you continue your journey.")
+                    print()
+                    sleep(1)
+
+                    text_choices(
+                        "A) Follow the road out of the village",
+                        "B) Ask the villagers for directions",
+                        "",
+                    )
+                    print()
+                    sc1_des2_ch1_ch1 = input("What is your next decision: ")
+                    desl_sc1_des2_ch1_ch1 = choices_check3(sc1_des2_ch1_ch1)
+                    print()
+
+                    if desl_sc1_des2_ch1_ch1 in ["a", "A"]:
+                        type_text("You chose to follow the road out of the village.")
+                        print()
+                        point_indictor(random.randint(1, 25))
+                        type_text(
+                            "After walking for a while, you see a familiar landmark."
+                        )
+                        print()
+                        type_text("You have found your way back home!")
+                        print()
+                        type_text(
+                            "Congratulations! You have successfully completed the game."
+                        )
+                        print()
+                        sleep(1)
+                        text_coloric("Game Over!", text_c="\033[92m")
+                        print()
+                        PlayAgain()
+
+                    elif desl_sc1_des2_ch1_ch1 in ["b", "B"]:
+                        type_text("You decided to ask the villagers for directions.")
+                        print()
+                        point_indictor(random.randint(1, 25))
+                        type_text(
+                            "The villagers give you detailed instructions on how to get back home."
+                        )
+                        print()
+                        type_text(
+                            "Following their directions, you find your way back home!"
+                        )
+                        print()
+                        type_text(
+                            "Congratulations! You have successfully completed the game."
+                        )
+                        print()
+                        sleep(1)
+                        text_coloric("Game Over!", text_c="\033[92m")
+                        print()
+                        PlayAgain()
+
+                elif desl_sc1_des2_ch1 in ["b", "B"]:
+                    type_text("You decided to ask the villagers for help.")
+                    print()
+                    point_indictor(random.randint(1, 25))
+                    type_text(
+                        "The villagers offer their assistance and guide you back home."
+                    )
+                    print()
+                    type_text(
+                        "Congratulations! You have successfully completed the game."
+                    )
+                    print()
+                    sleep(1)
+                    text_coloric("Game Over!", text_c="\033[92m")
+                    print()
+                    PlayAgain()
+
+        elif desl_des2 in ["c", "C"]:
+            type_text("You decided to follow the river to find another way around.")
             print()
-            text_coloric("A)pick up a rock from floor it may help you","B)ignore this rock","C)return home")
+            point_indictor(random.randint(1, 25))
+            type_text(
+                "As you follow the river, you come across a hidden path that leads you out of the forest."
+            )
             print()
-            sc1_ch1_des1_ch2 = input("your next step is important so take care when you choose it : ")
-            choices_check3(sc1_ch1_des1_ch2)
-        elif sc1_ch1_des1 in ["c","C"]:
-            type_text("your choice is climb the tree and pick up some leaves")
+            point_indictor(10)
             print()
-            next_scenario= random.choice(["you unfortunetly fall and dead","you sucessed and to climb and bring the leaves"])
-            if next_scenario == "you unfortunetly fall and dead":
-                type_text(next_scenario)
-                type_text("you unfortunetly fall and dead")
+            type_text(
+                "Congratulations! You found a way out of the forest and gained 10 points!"
+            )
+            print()
+            sleep(1)
+
+            text_choices(
+                "A) Continue your journey",
+                "B) Rest and recover your energy",
+                "C) Look for signs of civilization",
+            )
+            print()
+            des_2_ch1 = input("What do you want to do next? ")
+            desl_des_2_ch1  = choices_check3(des_2_ch1)
+            print()
+
+            if desl_des_2_ch1 in ["a", "A"]:
+                type_text("You chose to continue your journey.")
                 print()
-                type_text("game finished , you lossed")
+                point_indictor(random.randint(1, 25))
+                type_text(
+                    "After walking for a while, you stumble upon a small village."
+                )
                 print()
-                sys.exit
-            elif next_scenario == "you sucessed and to climb and bring the leaves":
-                type_text(next_scenario)
+                sleep(1)
+
+                text_coloric(
+                    "A) Explore the village",
+                    "B) Ask the villagers for help",
+                    "C) Find a place to rest",
+                )
                 print()
-            point_indictor(5)
-    elif sc1_des1 in ["b","B"]:
-        print("your choice is go to down town and search for weapons")
-    elif sc1_des1 in ["C","c"]:
-        print("your choice is search in your home")
-elif des_1 in ["b","B"]:
-    print(sc2)
-elif des_1 in ["c","C"]:
-    print(sc3)
-elif des_1 in ["d","D"]:
-    print(sc4)
+                sleep(1)
+
+                des_2_ch1_ch1 = input("What is your next step: ")
+                desl_des_2_ch1_ch1 = choices_check3(des_2_ch1_ch1)
+
+                if desl_des_2_ch1_ch1 in ["a", "A"]:
+                    type_text("You decided to explore the village.")
+                    print()
+                    point_indictor(random.randint(1, 25))
+                    type_text("As you explore, you discover a hidden treasure chest.")
+                    print()
+                    sleep(1)
+                    point_indictor(20)
+                    print()
+                    type_text(
+                        "Congratulations! You found a treasure chest and gained 20 points!"
+                    )
+                    print()
+                    type_text("Feeling accomplished, you continue your journey.")
+                    print()
+                    sleep(1)
+
+                    text_choices(
+                        "A) Follow the road out of the village",
+                        "B) Rest and recover your energy",
+                        "C) Ask the villagers for directions",
+                    )
+                    print()
+                    des_2_ch1_ch1_ch1 = input("What is your next decision: ")
+                    desl_des_2_ch1_ch1_ch1 = choices_check3(des_2_ch1_ch1_ch1)
+                    print()
+
+                    if desl_des_2_ch1_ch1_ch1 in ["a", "A"]:
+                        type_text("You chose to follow the road out of the village.")
+                        print()
+                        point_indictor(random.randint(1, 25))
+                        type_text(
+                            "After walking for a while, you see a familiar landmark."
+                        )
+                        print()
+                        type_text("You have found your way back home!")
+                        print()
+                        type_text(
+                            "Congratulations! You have successfully completed the game."
+                        )
+                        print()
+                        sleep(1)
+                        text_coloric("Game Over!", text_c="\033[92m")
+                        print()
+                        PlayAgain()
+
+                    elif desl_des_2_ch1_ch1_ch1 in ["b", "B"]:
+                        type_text("You decided to rest and recover your energy.")
+                        print()
+                        point_indictor(random.randint(1, 25))
+                        type_text(
+                            "After a good night's sleep, you wake up refreshed and ready to continue your journey."
+                        )
+                        print()
+                        text_choices(
+                            "A) Follow the road out of the village",
+                            "B) Ask the villagers for directions",
+                        )
+                        print()
+                        des_2_ch1_ch1_ch1_ch1 = input("What is your next decision: ")
+                        desl_des_2_ch1_ch1_ch1_ch1 = choices_check2(des_2_ch1_ch1_ch1_ch1)
+                        print()
+
+                        if desl_des_2_ch1_ch1_ch1_ch1 in ["a", "A"]:
+                            type_text(
+                                "You chose to follow the road out of the village."
+                            )
+                            print()
+                            point_indictor(random.randint(1, 25))
+                            type_text(
+                                "After walking for a while, you see a familiar landmark."
+                            )
+                            print()
+                            type_text("You have found your way back home!")
+                            print()
+                            type_text(
+                                "Congratulations! You have successfully completed the game."
+                            )
+                            print()
+                            sleep(1)
+                            text_coloric("Game Over!", text_c="\033[92m")
+                            print()
+                            PlayAgain()
+
+                        elif desl_des_2_ch1_ch1_ch1_ch1 in ["b", "B"]:
+                            type_text(
+                                "You decided to ask the villagers for directions."
+                            )
+                            print()
+                            point_indictor(random.randint(1, 25))
+                            type_text(
+                                "The villagers give you detailed instructions on how to get back home."
+                            )
+                            print()
+                            type_text(
+                                "Following their directions, you find your way back home!"
+                            )
+                            print()
+                            type_text(
+                                "Congratulations! You have successfully completed the game."
+                            )
+                            print()
+                            sleep(1)
+                            text_coloric("Game Over!", text_c="\033[92m")
+                            print()
+                            PlayAgain()
+
+                elif desl_des_2_ch1_ch1 in ["b", "B"]:
+                    type_text("You decided to ask the villagers for help.")
+                    print()
+                    point_indictor(random.randint(1, 25))
+                    type_text(
+                        "The villagers offer their assistance and guide you back home."
+                    )
+                    print()
+                    type_text(
+                        "Congratulations! You have successfully completed the game."
+                    )
+                    print()
+                    sleep(1)
+                    text_coloric("Game Over!", text_c="\033[92m")
+                    print()
+                    PlayAgain()
+
+                elif desl_des_2_ch1_ch1 in ["c", "C"]:
+                    type_text("You decided to find a place to rest.")
+                    print()
+                    point_indictor(random.randint(1, 25))
+                    type_text(
+                        "After a good night's sleep, you wake up refreshed and ready to continue your journey."
+                    )
+                    print()
+                    text_choices("A) Explore the village", "B) Ask the villagers for help","")
+                    print()
+                    des_2_ch1_ch1_ch1 = input("What is your next decision: ")
+                    desl_des_2_ch1_ch1 = choices_check2(des_2_ch1_ch1_ch1)
+                    print()
+
+                    if desl_des_2_ch1_ch1_ch1 in ["a", "A"]:
+                        type_text("You chose to explore the village.")
+                        print()
+                        point_indictor(random.randint(1, 25))
+                        type_text(
+                            "As you explore, you discover a hidden treasure chest."
+                        )
+                        print()
+                        sleep(1)
+                        point_indictor(20)
+                        print()
+                        type_text(
+                            "Congratulations! You found a treasure chest and gained 20 points!"
+                        )
+                        print()
+                        type_text("Feeling accomplished, you continue your journey.")
+                        print()
+                        sleep(1)
+
+                        text_choices(
+                            "A) Follow the road out of the village",
+                            "B) Ask the villagers for directions",
+                            "",
+                        )
+                        print()
+                        des_2_ch1_ch1_ch1_ch1 = input("What is your next decision: ")
+                        desl_des_2_ch1_ch1_ch1_ch1 = choices_check2(des_2_ch1_ch1_ch1_ch1)
+                        print()
+
+                        if desl_des_2_ch1_ch1_ch1_ch1 in ["a", "A"]:
+                            type_text(
+                                "You chose to follow the road out of the village."
+                            )
+                            print()
+                            point_indictor(random.randint(1, 25))
+                            type_text(
+                                "After walking for a while, you see a familiar landmark."
+                            )
+                            print()
+                            type_text("You have found your way back home!")
+                            print()
+                            type_text(
+                                "Congratulations! You have successfully completed the game."
+                            )
+                            print()
+                            sleep(1)
+                            text_coloric("Game Over!", text_c="\033[92m")
+                            print()
+                            PlayAgain()
+
+                        elif desl_des_2_ch1_ch1_ch1_ch1 in ["b", "B"]:
+                            type_text(
+                                "You decided to ask the villagers for directions."
+                            )
+                            print()
+                            point_indictor(random.randint(1, 25))
+                            type_text(
+                                "The villagers give you detailed instructions on how to get back home."
+                            )
+                            print()
+                            type_text(
+                                "Following their directions, you find your way back home!"
+                            )
+                            print()
+                            type_text(
+                                "Congratulations! You have successfully completed the game."
+                            )
+                            print()
+                            sleep(1)
+                            text_coloric("Game Over!", text_c="\033[92m")
+                            print()
+                            PlayAgain()
+
+                    elif desl_des_2_ch1_ch1_ch1 in ["b", "B"]:
+                        type_text("You decided to ask the villagers for help.")
+                        print()
+                        point_indictor(random.randint(1, 25))
+                        type_text(
+                            "The villagers offer their assistance and guide you back home."
+                        )
+                        print()
+                        type_text(
+                            "Congratulations! You have successfully completed the game."
+                        )
+                        print()
+                        sleep(1)
+                        text_coloric("Game Over!", text_c="\033[92m")
+                        print()
+                        PlayAgain()
+
+            elif desl_des_2_ch1 in ["b", "B"]:
+                type_text("You decided to rest and recover your energy.")
+                print()
+                point_indictor(random.randint(1, 25))
+                type_text(
+                    "After a good night's sleep, you wake up refreshed and ready to continue your journey."
+                )
+                print()
+                text_choices("A) Explore the village", "B) Ask the villagers for help","")
+                print()
+                des_2_ch1_ch1 = input("What is your next decision: ")
+                desl_des_2_ch1_ch1 = choices_check2()
+                print()
+
+                if desl_des_2_ch1_ch1 in ["a", "A"]:
+                    type_text("You chose to explore the village.")
+                    print()
+                    point_indictor(random.randint(1, 25))
+                    type_text("As you explore, you discover a hidden treasure chest.")
+                    print()
+                    sleep(1)
+                    point_indictor(20)
+                    print()
+                    type_text(
+                        "Congratulations! You found a treasure chest and gained 20 points!"
+                    )
+                    print()
+                    type_text("Feeling accomplished, you continue your journey.")
+                    print()
+                    sleep(1)
+
+                    text_choices(
+                        "A) Follow the road out of the village",
+                        "B) Ask the villagers for directions",
+                        ""
+                    )
+                    print()
+                    des_2_ch1_ch1_ch1 = input("What is your next decision: ")
+                    desl_des_2_ch1_ch1_ch1 = choices_check2(desl_des_2_ch1_ch1_ch1)
+                    print()
+
+                    if desl_des_2_ch1_ch1_ch1 in ["a", "A"]:
+                        type_text("You chose to follow the road out of the village.")
+                        print()
+                        point_indictor(random.randint(1, 25))
+                        type_text(
+                            "After walking for a while, you see a familiar landmark."
+                        )
+                        print()
+                        type_text("You have found your way back home!")
+                        print()
+                        type_text(
+                            "Congratulations! You have successfully completed the game."
+                        )
+                        print()
+                        sleep(1)
+                        text_coloric("Game Over!", text_c="\033[92m")
+                        print()
+                        PlayAgain()
+
+                    elif desl_des_2_ch1_ch1_ch1 in ["b", "B"]:
+                        type_text("You decided to ask the villagers for directions.")
+                        print()
+                        point_indictor(random.randint(1, 25))
+                        type_text(
+                            "The villagers give you detailed instructions on how to get back home."
+                        )
+                        print()
+                        type_text(
+                            "Following their directions, you find your way back home!"
+                        )
+                        print()
+                        type_text(
+                            "Congratulations! You have successfully completed the game."
+                        )
+                        print()
+                        sleep(1)
+                        text_coloric("Game Over!", text_c="\033[92m")
+                        print()
+                        PlayAgain()
+
+                elif desl_des_2_ch1_ch1 in ["b", "B"]:
+                    type_text("You decided to ask the villagers for help.")
+                    print()
+                    point_indictor(random.randint(1, 25))
+                    type_text(
+                        "The villagers offer their assistance and guide you back home."
+                    )
+                    print()
+                    type_text(
+                        "Congratulations! You have successfully completed the game."
+                    )
+                    print()
+                    sleep(1)
+                    text_coloric("Game Over!", text_c="\033[92m")
+                    print()
+                    PlayAgain()
+            elif desl_sc1_des2 in ["c", "C"]:
+                type_text("You decided to look for signs of civilization.")
+                print()
+                point_indictor(random.randint(1, 25))
+                type_text("As you explore, you come across a small village.")
+                print()
+                sleep(1)
+            text_choices(
+                "A) Explore the village",
+                "B) Ask the villagers for help",
+                "C) Find a place to rest",
+            )
+            print()
+            des_2_ch1 = input("What do you want to do next? ")
+            desl_des_2_ch1 = choices_check3(des_2_ch1)
+            print()
+            if desl_des_2_ch1 in ["a", "A"]:
+                type_text("You decided to explore the village.")
+                print()
+                point_indictor(random.randint(1, 25))
+                type_text("As you explore, you discover a hidden treasure chest.")
+                print()
+                sleep(1)
+                point_indictor(20)
+                print()
+                type_text(
+                    "Congratulations! You found a treasure chest and gained 20 points!"
+                )
+                print()
+                type_text("Feeling accomplished, you continue your journey.")
+                print()
+                sleep(1)
+
+                text_choices(
+                    "A) Follow the road out of the village",
+                    "B) Rest and recover your energy",
+                    "C) Ask the villagers for directions",
+                )
+                print()
+                des_2_ch1_ch1 = input("What is your next decision: ")
+                desl_des_2_ch1_ch1 = choices_check3(des_2_ch1_ch1)
+                print()
+
+                if desl_des_2_ch1_ch1 in ["a", "A"]:
+                    type_text("You chose to follow the road out of the village.")
+                    print()
+                    point_indictor(random.randint(1, 25))
+                    type_text("After walking for a while, you see a familiar landmark.")
+                    print()
+                    type_text("You have found your way back home!")
+                    print()
+                    type_text(
+                        "Congratulations! You have successfully completed the game."
+                    )
+                    print()
+                    sleep(1)
+                    text_coloric("Game Over!", text_c="\033[92m")
+                    print()
+                    PlayAgain()
+
+                elif desl_des_2_ch1_ch1 in ["b", "B"]:
+                    type_text("You decided to rest and recover your energy.")
+                    print()
+                    point_indictor(random.randint(1, 25))
+                    type_text(
+                        "After a good night's sleep, you wake up refreshed and ready to continue your journey."
+                    )
+                    print()
+                    text_choices(
+                        "A) Follow the road out of the village",
+                        "B) Ask the villagers for directions",
+                        ""
+                    )
+                    print()
+                    des_2_ch1_ch1_ch1 = input("What is your next decision: ")
+                    desl_des_2_ch1_ch1_ch1 = choices_check2(des_2_ch1_ch1_ch1)
+                    print()
+
+                    if desl_des_2_ch1_ch1_ch1 in ["a", "A"]:
+                        type_text("You chose to follow the road out of the village.")
+                        print()
+                        point_indictor(random.randint(1, 25))
+                        type_text(
+                            "After walking for a while, you see a familiar landmark."
+                        )
+                        print()
+                        type_text("You have found your way back home!")
+                        print()
+                        type_text(
+                            "Congratulations! You have successfully completed the game."
+                        )
+                        print()
+                        sleep(1)
+                        text_coloric("Game Over!", text_c="\033[92m")
+                        print()
+                        PlayAgain()
+
+                    elif desl_des_2_ch1_ch1_ch1 in ["b", "B"]:
+                        type_text("You decided to ask the villagers for directions.")
+                        print()
+                        point_indictor(random.randint(1, 25))
+                        type_text(
+                            "The villagers give you detailed instructions on how to get back home."
+                        )
+                        print()
+                        type_text(
+                            "Following their directions, you find your way back home!"
+                        )
+                        print()
+                        type_text(
+                            "Congratulations! You have successfully completed the game."
+                        )
+                        print()
+                        sleep(1)
+                        text_coloric("Game Over!", text_c="\033[92m")
+                        print()
+                        PlayAgain()
+
+                elif desl_des_2_ch1_ch1 in ["c", "C"]:
+                    type_text("You decided to find a place to rest.")
+                    print()
+                    point_indictor(random.randint(1, 25))
+                    type_text(
+                        "After a good night's sleep, you wake up refreshed and ready to continue your journey."
+                    )
+                    print()
+                    text_choices(
+                        "A) Follow the road out of the village",
+                        "B) Ask the villagers for directions",
+                    )
+                    print()
+                    des_2_ch1_ch1_ch1 = input("What is your next decision: ")
+                    desl_des_2_ch1_ch1_ch1 = choices_check2(des_2_ch1_ch1_ch1)
+                    print()
+
+                    if desl_des_2_ch1_ch1_ch1 in ["a", "A"]:
+                        type_text("You chose to follow the road out of the village.")
+                        print()
+                        point_indictor(random.randint(1, 25))
+                        type_text(
+                            "After walking for a while, you see a familiar landmark."
+                        )
+                        print()
+                        type_text("You have found your way back home!")
+                        print()
+                        type_text(
+                            "Congratulations! You have successfully completed the game."
+                        )
+                        print()
+                        sleep(1)
+                        text_coloric("Game Over!", text_c="\033[92m")
+                        print()
+                        PlayAgain()
+
+                    elif desl_des_2_ch1_ch1_ch1 in ["b", "B"]:
+                        type_text("You decided to ask the villagers for directions.")
+                        print()
+                        point_indictor(random.randint(1, 25))
+                        type_text(
+                            "The villagers give you detailed instructions on how to get back home."
+                        )
+                        print()
+                        type_text(
+                            "Following their directions, you find your way back home!"
+                        )
+                        print()
+                        type_text(
+                            "Congratulations! You have successfully completed the game."
+                        )
+                        print()
+                        sleep(1)
+                        text_coloric("Game Over!", text_c="\033[92m")
+                        print()
+                        PlayAgain()
+
+            elif desl_des_2_ch1 in ["b", "B"]:
+                type_text("You decided to ask the villagers for help.")
+                print()
+                point_indictor(random.randint(1, 25))
+                type_text(
+                    "The villagers offer their assistance and guide you back home."
+                )
+                print()
+                type_text("Congratulations! You have successfully completed the game.")
+                print()
+                sleep(1)
+                text_coloric("Game Over!", text_c="\033[92m")
+                print()
+                PlayAgain()
+
+            elif desl_des_2_ch1 in ["c", "C"]:
+                type_text("You decided to find a place to rest.")
+                print()
+                point_indictor(random.randint(1, 25))
+                type_text(
+                    "After a good night's sleep, you wake up refreshed and ready to continue your journey."
+                )
+                print()
+                text_choices("A) Explore the village", "B) Ask the villagers for help","")
+                print()
+                des_2_ch1_ch1 = input("What is your next decision: ")
+                desl_des_2_ch1_ch1 = choices_check2(des_2_ch1_ch1)
+                print()
+
+                if desl_des_2_ch1_ch1 in ["a", "A"]:
+                    type_text("You chose to explore the village.")
+                    print()
+                    point_indictor(random.randint(1, 25))
+                    type_text("As you explore, you discover a hidden treasure chest.")
+                    print()
+                    sleep(1)
+                    point_indictor(20)
+                    print()
+                    type_text(
+                        "Congratulations! You found a treasure chest and gained 20 points!"
+                    )
+                    print()
+                    type_text("Feeling accomplished, you continue your journey.")
+                    print()
+                    sleep(1)
+
+                    text_choices(
+                        "A) Follow the road out of the village",
+                        "B) Ask the villagers for directions",
+                        ""
+                    )
+                    print()
+                    des_2_ch1_ch1_ch1 = input("What is your next decision: ")
+                    desl_des_2_ch1_ch1_ch1 = choices_check2(des_2_ch1_ch1_ch1)
+                    print()
+
+                    if desl_des_2_ch1_ch1_ch1 in ["a", "A"]:
+                        type_text("You chose to follow the road out of the village.")
+                        print()
+                        point_indictor(random.randint(1, 25))
+                        type_text(
+                            "After walking for a while, you see a familiar landmark."
+                        )
+                        print()
+                        type_text("You have found your way back home!")
+                        print()
+                        type_text(
+                            "Congratulations! You have successfully completed the game."
+                        )
+                        print()
+                        sleep(1)
+                        text_coloric("Game Over!", text_c="\033[92m")
+                        print()
+                        PlayAgain()
+
+                    elif desl_des_2_ch1_ch1_ch1 in ["b", "B"]:
+                        type_text("You decided to ask the villagers for directions.")
+                        print()
+                        point_indictor(random.randint(1, 25))
+                        type_text(
+                            "The villagers give you detailed instructions on how to get back home."
+                        )
+                        print()
+                        type_text(
+                            "Following their directions, you find your way back home!"
+                        )
+                        print()
+                        type_text(
+                            "Congratulations! You have successfully completed the game."
+                        )
+                        print()
+                        sleep(1)
+                        text_coloric("Game Over!", text_c="\033[92m")
+                        print()
+                        PlayAgain()
+                elif desl_des_2_ch1_ch1 in ["b", "B"]:
+                    type_text("You decided to ask the villagers for help.")
+                    print()
+                    point_indictor(random.randint(1, 25))
+                    type_text(
+                        "The villagers offer their assistance and guide you back home."
+                    )
+                    print()
+                    type_text(
+                        "Congratulations! You have successfully completed the game."
+                    )
+                    print()
+                    sleep(1)
+                    text_coloric("Game Over!", text_c="\033[92m")
+                    print()
+                    PlayAgain()
+
+    elif desl_des1 in ["b", "B"]:
+        type_text("You decided to take the left path.")
+        print()
+        point_indictor(random.randint(1, 25))
+        type_text(
+            "As you continue on the left path, you come across a river blocking your way."
+        )
+        print()
+        text_choices(
+            "A) Try to find a way to cross the river",
+            "B) Turn back and take the right path",
+            "",
+        )
+        print()
+        des_1_ch1 = input("What is your next decision: ")
+        desl_des_1_ch1 = choices_check2(des_1_ch1)
+        print()
+
+        if desl_des_1_ch1 in ["a", "A"]:
+            type_text("You decided to try to find a way to cross the river.")
+            print()
+            point_indictor(random.randint(1, 25))
+            type_text("After searching for a while, you find a sturdy log.")
+            print()
+            sleep(1)
+
+            text_choices(
+                "A) Attempt to cross the river using the log",
+                "B) Give up and turn back to take the right path",
+                ""
+            )
+            print()
+            des_1_ch1_ch1 = input("What is your next decision: ")
+            desl_des_1_ch1_ch1 = choices_check2(des_1_ch1_ch1)
+            print()
+
+            if desl_des_1_ch1_ch1 in ["a", "A"]:
+                type_text("You chose to attempt to cross the river using the log.")
+                print()
+                point_indictor(random.randint(1, 25))
+                type_text("With careful balance, you manage to cross the river safely.")
+                print()
+                type_text("Continuing on, you encounter a dense forest.")
+                print()
+                sleep(1)
+
+                text_choices("A) Explore the forest", "B) Look for a way out of the forest","")
+                print()
+                des_1_ch1_ch1_ch1 = input("What is your next decision: ")
+                desl_des_1_ch1_ch1_ch1 = choices_check2(des_1_ch1_ch1_ch1)
+                print()
+
+                if desl_des_1_ch1_ch1_ch1 in ["a", "A"]:
+                    type_text("You chose to explore the forest.")
+                    print()
+                    point_indictor(random.randint(1, 25))
+                    type_text("As you explore, you stumble upon a hidden treasure.")
+                    print()
+                    sleep(1)
+                    point_indictor(30)
+                    print()
+                    type_text(
+                        "Congratulations! You found a hidden treasure and gained 30 points!"
+                    )
+                    print()
+                    type_text("Feeling excited, you continue your journey.")
+                    print()
+                    sleep(1)
+
+                    text_choices("A) Continue through the forest","B) Look for a way out of the forest","")
+                    print()
+                    des_1_ch1_ch1_ch1_ch1 = input("What is your next decision: ")
+                    desl_des_1_ch1_ch1_ch1_ch1 = choices_check2(des_1_ch1_ch1_ch1_ch1)
+                    print()
+
+                    if desl_des_1_ch1_ch1_ch1_ch1 in ["a", "A"]:
+                        type_text("You chose to continue through the forest.")
+                        print()
+                        point_indictor(random.randint(1, 25))
+                        type_text("After a while, you see a familiar landmark.")
+                        print()
+                        type_text("You have found your way back home!")
+                        print()
+                        type_text(
+                            "Congratulations! You have successfully completed the game."
+                        )
+                        print()
+                        sleep(1)
+                        text_coloric("Game Over!", text_c="\033[92m")
+                        print()
+                        PlayAgain()
+
+                    elif desl_des_1_ch1_ch1_ch1_ch1 in ["b", "B"]:
+                        type_text("You decided to look for a way out of the forest.")
+                        print()
+                        point_indictor(random.randint(1, 25))
+                        type_text(
+                            "After some time, you find a path that leads you out of the forest."
+                        )
+                        print()
+                        type_text("Following the path, you find your way back home!")
+                        print()
+                        type_text(
+                            "Congratulations! You have successfully completed the game."
+                        )
+                        print()
+                        sleep(1)
+                        text_coloric("Game Over!", text_c="\033[92m")
+                        print()
+                        PlayAgain()
+
+                elif desl_des_1_ch1_ch1_ch1 in ["b", "B"]:
+                    type_text("You decided to look for a way out of the forest.")
+                    print()
+                    point_indictor(random.randint(1, 25))
+                    type_text(
+                        "After some time, you find a path that leads you out of the forest."
+                    )
+                    print()
+                    type_text("Following the path, you find your way back home!")
+                    print()
+                    type_text(
+                        "Congratulations! You have successfully completed the game."
+                    )
+                    print()
+                    sleep(1)
+                    text_coloric("Game Over!", text_c="\033[92m")
+                    print()
+                    PlayAgain()
+
+            elif desl_des_1_ch1_ch1 in ["b", "B"]:
+                type_text(
+                    "You decided to give up and turn back to take the right path."
+                )
+                print()
+                point_indictor(random.randint(1, 25))
+                type_text("As you backtrack, you come across a hidden path.")
+                print()
+                type_text(
+                    "Curiosity gets the better of you, and you decide to explore it."
+                )
+                print()
+                sleep(1)
+
+                type_text("You encounter various challenges along the hidden path.")
+                print()
+                type_text(
+                    "With determination and quick thinking, you overcome each obstacle."
+                )
+                print()
+                type_text("Finally, you reach the end of the hidden path.")
+                print()
+                type_text("To your surprise, it leads you back home!")
+                print()
+                type_text("Congratulations! You have successfully completed the game.")
+                print()
+                sleep(1)
+                text_coloric("Game Over!", text_c="\033[92m")
+                print()
+                PlayAgain()
+
+        elif desl_des_1_ch1 in ["b", "B"]:
+            type_text("You decided to turn back and take the right path.")
+            print()
+            point_indictor(random.randint(1, 25))
+            type_text(
+                "As you walk along the right path, you notice a glimmering object in the distance."
+            )
+            print()
+            type_text("Curiosity piques your interest, and you decide to investigate.")
+            print()
+            sleep(1)
+
+            type_text("You find a hidden cave filled with treasures.")
+            print()
+            type_text("You collect the treasures and gain valuable points.")
+            print()
+            sleep(1)
+            point_indictor(50)
+            print()
+            type_text("Congratulations! You found a hidden cave and gained 50 points!")
+            print()
+            type_text("Feeling triumphant, you continue your journey.")
+            print()
+            sleep(1)
+
+            text_choices("A) Continue on the path", "B) Rest and recover your energy","")
+            print()
+            des_1_ch1_ch1 = input("What is your next decision: ")
+            desl_des_1_ch1_ch1 = choices_check2(des_1_ch1_ch1)
+            print()
+
+            if desl_des_1_ch1_ch1 in ["a", "A"]:
+                type_text("You chose to continue on the path.")
+                print()
+                point_indictor(random.randint(1, 25))
+                type_text("After a while, you see a familiar landmark.")
+                print()
+                type_text("You have found your way back home!")
+                print()
+                type_text("Congratulations! You have successfully completed the game.")
+                print()
+                sleep(1)
+                text_coloric("Game Over!", text_c="\033[92m")
+                print()
+                PlayAgain()
+
+            elif desl_des_1_ch1_ch1 in ["b", "B"]:
+                type_text("You decided to rest and recover your energy.")
+                print()
+                point_indictor(random.randint(1, 25))
+                type_text(
+                    "After a good night's sleep, you wake up refreshed and ready to continue your journey."
+                )
+                print()
+                text_choices("A) Continue on the path", "B) Look for a shortcut back home","")
+                print()
+                des_1_ch1_ch1_ch1 = input("What is your next decision: ")
+                desl_des_1_ch1_ch1_ch1 = choices_check2(des_1_ch1_ch1_ch1)
+                print()
+
+                if desl_des_1_ch1_ch1_ch1 in ["a", "A"]:
+                    type_text("You chose to continue on the path.")
+                    print()
+                    point_indictor(random.randint(1, 25))
+                    type_text("After a while, you see a familiar landmark.")
+                    print()
+                    type_text("You have found your way back home!")
+                    print()
+                    type_text(
+                        "Congratulations! You have successfully completed the game."
+                    )
+                    print()
+                    sleep(1)
+                    text_coloric("Game Over!", text_c="\033[92m")
+                    print()
+                    PlayAgain()
+
+                elif desl_des_1_ch1_ch1_ch1 in ["b", "B"]:
+                    type_text("You decided to look for a shortcut back home.")
+                    print()
+                    point_indictor(random.randint(1, 25))
+                    type_text(
+                        "After exploring for a while, you discover a hidden path."
+                    )
+                    print()
+                    type_text(
+                        "Taking the hidden path, you find a quicker route back home!"
+                    )
+                    print()
+                    type_text(
+                        "Congratulations! You have successfully completed the game."
+                    )
+                    print()
+                    sleep(1)
+                    text_coloric("Game Over!", text_c="\033[92m")
+                    print()
+                    PlayAgain()
+    elif desl_des1 in ["c","C"]:
+        print()
+        text_coloric("i am very sorry to say that this part is under developmnt",text_c="\033[91m")
+        print()
+        PlayAgain()
+
+play_game()
