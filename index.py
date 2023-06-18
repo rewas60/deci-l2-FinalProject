@@ -1,5 +1,5 @@
-import sys
 import random
+import sys
 import time
 from time import sleep
 import colored
@@ -11,6 +11,8 @@ import colored
 # function section
 #####################################################################################################################
 # To color the text
+
+
 def coloric(sentence, the_word, color_code):
     """
     Returns a colored version of the sentence by replacing the specified word with the given color code.
@@ -23,9 +25,12 @@ def coloric(sentence, the_word, color_code):
     Returns:
         str: The colored sentence.
     """
-    colored_sentence = sentence.replace(the_word, f"{color_code}{the_word}\033[0m")
+    colored_sentence = sentence.replace(
+        the_word, f"{color_code}{the_word}\033[0m")
     return colored_sentence
-#typing effect
+# typing effect
+
+
 def type_text(text, delay=0.05):
     """
     Prints the text character by character with a specified delay between each character.
@@ -37,7 +42,9 @@ def type_text(text, delay=0.05):
     for char in text:
         print(char, end="", flush=True)
         time.sleep(delay)
-#valdiate functions
+# valdiate functions
+
+
 def choices_check3(des):
     """
     Validates the user's choice from a list of options (a, A, b, B, c, C).
@@ -56,6 +63,8 @@ def choices_check3(des):
         else:
             print(f"Your choice is {des}")
             return des
+
+
 def choices_check2(des):
     """
     Validates the user's choice from a list of options (a, A, b, B).
@@ -74,6 +83,8 @@ def choices_check2(des):
         else:
             print(f"Your choice is {des}")
             return des
+
+
 def name_checker():
     """
     Asks the user to enter their name and checks if it is valid (no numbers).
@@ -87,8 +98,12 @@ def name_checker():
             print("Invalid name. Name cannot contain numbers.")
         else:
             return name
-#poinst inqury
+
+
+# poinst inqury
 points = 0
+
+
 def point_indictor(added_points):
     """
     Updates the points variable and prints the updated points indicator.
@@ -106,7 +121,9 @@ def point_indictor(added_points):
     text_coloric(f"Your points is {points}", text_c="\033[94m")
     print()
     print("=================================================")
-#effect with typing effect
+# effect with typing effect
+
+
 def text_coloric(
     text_N1=None, text_N2=None, text_N3=None, text_N4=None, text_c="\033[92m"
 ):
@@ -137,7 +154,9 @@ def text_coloric(
     if colored_text_N4:
         type_text(colored_text_N4)
         print()
-#colors gradiant
+# colors gradiant
+
+
 def text_choices(text_a, text_b, text_c, text_d="", text_e="", text_f=""):
     """
     Prints the text choices with different colors.
@@ -166,7 +185,9 @@ def text_choices(text_a, text_b, text_c, text_d="", text_e="", text_f=""):
         print(colored.fg("red"), end="")
         print(text_f)
     print(colored.attr("reset"), end="")
-#play again
+# play again
+
+
 def play_again():
     """
     Asks the user if they want to play again and handles their choice.
@@ -182,7 +203,9 @@ def play_again():
             sys.exit()
         elif lol in ["Y", "y"]:
             play_game()
-#Intro function
+# Intro function
+
+
 def IntroFunction():
     """
     Displays the introductory message and gets the user's name.
@@ -306,7 +329,8 @@ def play_game():
                     type_text("You decided to explore the village.")
                     print()
 
-                    type_text("As you explore, you discover a hidden treasure chest.")
+                    type_text(
+                        "As you explore, you discover a hidden treasure chest.")
                     print()
                     sleep(1)
                     point_indictor(20)
@@ -315,7 +339,8 @@ def play_game():
                         "Congratulations! You found a treasure chest and gained 20 points!"
                     )
                     print()
-                    type_text("Feeling accomplished, you continue your journey.")
+                    type_text(
+                        "Feeling accomplished, you continue your journey.")
                     print()
                     sleep(1)
 
@@ -330,7 +355,8 @@ def play_game():
                     print()
 
                     if desl_sc1_ch1_des2_ch1 in ["a", "A"]:
-                        type_text("You chose to follow the road out of the village.")
+                        type_text(
+                            "You chose to follow the road out of the village.")
                         print()
                         point_indictor(random.randint(1, 25))
                         type_text(
@@ -349,7 +375,8 @@ def play_game():
                         play_again()
 
                     elif desl_sc1_ch1_des2_ch1 in ["b", "B"]:
-                        type_text("You decided to rest and recover your energy.")
+                        type_text(
+                            "You decided to rest and recover your energy.")
                         point_indictor(random.randint(1, 25))
                         print()
                         type_text(
@@ -362,8 +389,10 @@ def play_game():
                             "",
                         )
                         print()
-                        sc1_ch1_des2_ch1_ch1 = input("What is your next decision: ")
-                        desl_sc1_ch1_des2_ch1_ch1 = choices_check2(sc1_ch1_des2_ch1_ch1)
+                        sc1_ch1_des2_ch1_ch1 = input(
+                            "What is your next decision: ")
+                        desl_sc1_ch1_des2_ch1_ch1 = choices_check2(
+                            sc1_ch1_des2_ch1_ch1)
                         print()
 
                         if desl_sc1_ch1_des2_ch1_ch1 in ["a", "A"]:
@@ -456,7 +485,8 @@ def play_game():
                             "Congratulations! You found a treasure chest and gained 20 points!"
                         )
                         print()
-                        type_text("Feeling accomplished, you continue your journey.")
+                        type_text(
+                            "Feeling accomplished, you continue your journey.")
                         print()
                         sleep(1)
 
@@ -466,8 +496,10 @@ def play_game():
                             ".",
                         )
                         print()
-                        sc1_ch1_des2_ch1_ch1 = input("What is your next decision: ")
-                        desl_sc1_ch1_des2_ch1_ch1 = choices_check2(sc1_ch1_des2_ch1_ch1)
+                        sc1_ch1_des2_ch1_ch1 = input(
+                            "What is your next decision: ")
+                        desl_sc1_ch1_des2_ch1_ch1 = choices_check2(
+                            sc1_ch1_des2_ch1_ch1)
                         print()
 
                         if desl_sc1_ch1_des2_ch1_ch1 in ["a", "A"]:
@@ -552,7 +584,8 @@ def play_game():
                     type_text("You chose to explore the village.")
                     print()
                     point_indictor(random.randint(1, 25))
-                    type_text("As you explore, you discover a hidden treasure chest.")
+                    type_text(
+                        "As you explore, you discover a hidden treasure chest.")
                     print()
                     sleep(1)
                     point_indictor(20)
@@ -561,7 +594,8 @@ def play_game():
                         "Congratulations! You found a treasure chest and gained 20 points!"
                     )
                     print()
-                    type_text("Feeling accomplished, you continue your journey.")
+                    type_text(
+                        "Feeling accomplished, you continue your journey.")
                     print()
                     sleep(1)
 
@@ -576,7 +610,8 @@ def play_game():
                     print()
 
                     if desl_sc1_des2_ch1_ch1 in ["a", "A"]:
-                        type_text("You chose to follow the road out of the village.")
+                        type_text(
+                            "You chose to follow the road out of the village.")
                         print()
                         point_indictor(random.randint(1, 25))
                         type_text(
@@ -595,7 +630,8 @@ def play_game():
                         play_again()
 
                     elif desl_sc1_des2_ch1_ch1 in ["b", "B"]:
-                        type_text("You decided to ask the villagers for directions.")
+                        type_text(
+                            "You decided to ask the villagers for directions.")
                         print()
                         point_indictor(random.randint(1, 25))
                         type_text(
@@ -633,7 +669,8 @@ def play_game():
                     play_again()
 
         elif desl_des2 in ["c", "C"]:
-            type_text("You decided to follow the river to find another way around.")
+            type_text(
+                "You decided to follow the river to find another way around.")
             print()
             point_indictor(random.randint(1, 25))
             type_text(
@@ -684,7 +721,8 @@ def play_game():
                     type_text("You decided to explore the village.")
                     print()
                     point_indictor(random.randint(1, 25))
-                    type_text("As you explore, you discover a hidden treasure chest.")
+                    type_text(
+                        "As you explore, you discover a hidden treasure chest.")
                     print()
                     sleep(1)
                     point_indictor(20)
@@ -693,7 +731,8 @@ def play_game():
                         "Congratulations! You found a treasure chest and gained 20 points!"
                     )
                     print()
-                    type_text("Feeling accomplished, you continue your journey.")
+                    type_text(
+                        "Feeling accomplished, you continue your journey.")
                     print()
                     sleep(1)
 
@@ -708,7 +747,8 @@ def play_game():
                     print()
 
                     if desl_des_2_ch1_ch1_ch1 in ["a", "A"]:
-                        type_text("You chose to follow the road out of the village.")
+                        type_text(
+                            "You chose to follow the road out of the village.")
                         print()
                         point_indictor(random.randint(1, 25))
                         type_text(
@@ -727,7 +767,8 @@ def play_game():
                         play_again()
 
                     elif desl_des_2_ch1_ch1_ch1 in ["b", "B"]:
-                        type_text("You decided to rest and recover your energy.")
+                        type_text(
+                            "You decided to rest and recover your energy.")
                         print()
                         point_indictor(random.randint(1, 25))
                         type_text(
@@ -740,7 +781,8 @@ def play_game():
                             "B) Ask the villagers for directions",
                         )
                         print()
-                        des_2_ch1_ch1_ch1_ch1 = input("What is your next decision: ")
+                        des_2_ch1_ch1_ch1_ch1 = input(
+                            "What is your next decision: ")
                         desl_des_2_ch1_ch1_ch1_ch1 = choices_check2(
                             des_2_ch1_ch1_ch1_ch1
                         )
@@ -838,7 +880,8 @@ def play_game():
                             "Congratulations! You found a treasure chest and gained 20 points!"
                         )
                         print()
-                        type_text("Feeling accomplished, you continue your journey.")
+                        type_text(
+                            "Feeling accomplished, you continue your journey.")
                         print()
                         sleep(1)
 
@@ -848,7 +891,8 @@ def play_game():
                             "",
                         )
                         print()
-                        des_2_ch1_ch1_ch1_ch1 = input("What is your next decision: ")
+                        des_2_ch1_ch1_ch1_ch1 = input(
+                            "What is your next decision: ")
                         desl_des_2_ch1_ch1_ch1_ch1 = choices_check2(
                             des_2_ch1_ch1_ch1_ch1
                         )
@@ -936,7 +980,8 @@ def play_game():
                     type_text("You chose to explore the village.")
                     print()
                     point_indictor(random.randint(1, 25))
-                    type_text("As you explore, you discover a hidden treasure chest.")
+                    type_text(
+                        "As you explore, you discover a hidden treasure chest.")
                     print()
                     sleep(1)
                     point_indictor(20)
@@ -945,7 +990,8 @@ def play_game():
                         "Congratulations! You found a treasure chest and gained 20 points!"
                     )
                     print()
-                    type_text("Feeling accomplished, you continue your journey.")
+                    type_text(
+                        "Feeling accomplished, you continue your journey.")
                     print()
                     sleep(1)
 
@@ -956,11 +1002,13 @@ def play_game():
                     )
                     print()
                     des_2_ch1_ch1_ch1 = input("What is your next decision: ")
-                    desl_des_2_ch1_ch1_ch1 = choices_check2(desl_des_2_ch1_ch1_ch1)
+                    desl_des_2_ch1_ch1_ch1 = choices_check2(
+                        desl_des_2_ch1_ch1_ch1)
                     print()
 
                     if desl_des_2_ch1_ch1_ch1 in ["a", "A"]:
-                        type_text("You chose to follow the road out of the village.")
+                        type_text(
+                            "You chose to follow the road out of the village.")
                         print()
                         point_indictor(random.randint(1, 25))
                         type_text(
@@ -979,7 +1027,8 @@ def play_game():
                         play_again()
 
                     elif desl_des_2_ch1_ch1_ch1 in ["b", "B"]:
-                        type_text("You decided to ask the villagers for directions.")
+                        type_text(
+                            "You decided to ask the villagers for directions.")
                         print()
                         point_indictor(random.randint(1, 25))
                         type_text(
@@ -1035,7 +1084,8 @@ def play_game():
                 type_text("You decided to explore the village.")
                 print()
                 point_indictor(random.randint(1, 25))
-                type_text("As you explore, you discover a hidden treasure chest.")
+                type_text(
+                    "As you explore, you discover a hidden treasure chest.")
                 print()
                 sleep(1)
                 point_indictor(20)
@@ -1059,10 +1109,12 @@ def play_game():
                 print()
 
                 if desl_des_2_ch1_ch1 in ["a", "A"]:
-                    type_text("You chose to follow the road out of the village.")
+                    type_text(
+                        "You chose to follow the road out of the village.")
                     print()
                     point_indictor(random.randint(1, 25))
-                    type_text("After walking for a while, you see a familiar landmark.")
+                    type_text(
+                        "After walking for a while, you see a familiar landmark.")
                     print()
                     type_text("You have found your way back home!")
                     print()
@@ -1095,7 +1147,8 @@ def play_game():
                     print()
 
                     if desl_des_2_ch1_ch1_ch1 in ["a", "A"]:
-                        type_text("You chose to follow the road out of the village.")
+                        type_text(
+                            "You chose to follow the road out of the village.")
                         print()
                         point_indictor(random.randint(1, 25))
                         type_text(
@@ -1114,7 +1167,8 @@ def play_game():
                         play_again()
 
                     elif desl_des_2_ch1_ch1_ch1 in ["b", "B"]:
-                        type_text("You decided to ask the villagers for directions.")
+                        type_text(
+                            "You decided to ask the villagers for directions.")
                         print()
                         point_indictor(random.randint(1, 25))
                         type_text(
@@ -1153,7 +1207,8 @@ def play_game():
                     print()
 
                     if desl_des_2_ch1_ch1_ch1 in ["a", "A"]:
-                        type_text("You chose to follow the road out of the village.")
+                        type_text(
+                            "You chose to follow the road out of the village.")
                         print()
                         point_indictor(random.randint(1, 25))
                         type_text(
@@ -1172,7 +1227,8 @@ def play_game():
                         play_again()
 
                     elif desl_des_2_ch1_ch1_ch1 in ["b", "B"]:
-                        type_text("You decided to ask the villagers for directions.")
+                        type_text(
+                            "You decided to ask the villagers for directions.")
                         print()
                         point_indictor(random.randint(1, 25))
                         type_text(
@@ -1200,7 +1256,8 @@ def play_game():
                     "The villagers offer their assistance and guide you back home."
                 )
                 print()
-                type_text("Congratulations! You have successfully completed the game.")
+                type_text(
+                    "Congratulations! You have successfully completed the game.")
                 print()
                 sleep(1)
                 text_coloric("Game Over!", text_c="\033[92m")
@@ -1227,7 +1284,8 @@ def play_game():
                     type_text("You chose to explore the village.")
                     print()
                     point_indictor(random.randint(1, 25))
-                    type_text("As you explore, you discover a hidden treasure chest.")
+                    type_text(
+                        "As you explore, you discover a hidden treasure chest.")
                     print()
                     sleep(1)
                     point_indictor(20)
@@ -1236,7 +1294,8 @@ def play_game():
                         "Congratulations! You found a treasure chest and gained 20 points!"
                     )
                     print()
-                    type_text("Feeling accomplished, you continue your journey.")
+                    type_text(
+                        "Feeling accomplished, you continue your journey.")
                     print()
                     sleep(1)
 
@@ -1251,7 +1310,8 @@ def play_game():
                     print()
 
                     if desl_des_2_ch1_ch1_ch1 in ["a", "A"]:
-                        type_text("You chose to follow the road out of the village.")
+                        type_text(
+                            "You chose to follow the road out of the village.")
                         print()
                         point_indictor(random.randint(1, 25))
                         type_text(
@@ -1270,7 +1330,8 @@ def play_game():
                         play_again()
 
                     elif desl_des_2_ch1_ch1_ch1 in ["b", "B"]:
-                        type_text("You decided to ask the villagers for directions.")
+                        type_text(
+                            "You decided to ask the villagers for directions.")
                         print()
                         point_indictor(random.randint(1, 25))
                         type_text(
@@ -1343,10 +1404,12 @@ def play_game():
             print()
 
             if desl_des_1_ch1_ch1 in ["a", "A"]:
-                type_text("You chose to attempt to cross the river using the log.")
+                type_text(
+                    "You chose to attempt to cross the river using the log.")
                 print()
                 point_indictor(random.randint(1, 25))
-                type_text("With careful balance, you manage to cross the river safely.")
+                type_text(
+                    "With careful balance, you manage to cross the river safely.")
                 print()
                 type_text("Continuing on, you encounter a dense forest.")
                 print()
@@ -1364,7 +1427,8 @@ def play_game():
                     type_text("You chose to explore the forest.")
                     print()
                     point_indictor(random.randint(1, 25))
-                    type_text("As you explore, you stumble upon a hidden treasure.")
+                    type_text(
+                        "As you explore, you stumble upon a hidden treasure.")
                     print()
                     sleep(1)
                     point_indictor(30)
@@ -1383,15 +1447,18 @@ def play_game():
                         "",
                     )
                     print()
-                    des_1_ch1_ch1_ch1_ch1 = input("What is your next decision: ")
-                    desl_des_1_ch1_ch1_ch1_ch1 = choices_check2(des_1_ch1_ch1_ch1_ch1)
+                    des_1_ch1_ch1_ch1_ch1 = input(
+                        "What is your next decision: ")
+                    desl_des_1_ch1_ch1_ch1_ch1 = choices_check2(
+                        des_1_ch1_ch1_ch1_ch1)
                     print()
 
                     if desl_des_1_ch1_ch1_ch1_ch1 in ["a", "A"]:
                         type_text("You chose to continue through the forest.")
                         print()
                         point_indictor(random.randint(1, 25))
-                        type_text("After a while, you see a familiar landmark.")
+                        type_text(
+                            "After a while, you see a familiar landmark.")
                         print()
                         type_text("You have found your way back home!")
                         print()
@@ -1405,14 +1472,16 @@ def play_game():
                         play_again()
 
                     elif desl_des_1_ch1_ch1_ch1_ch1 in ["b", "B"]:
-                        type_text("You decided to look for a way out of the forest.")
+                        type_text(
+                            "You decided to look for a way out of the forest.")
                         print()
                         point_indictor(random.randint(1, 25))
                         type_text(
                             "After some time, you find a path that leads you out of the forest."
                         )
                         print()
-                        type_text("Following the path, you find your way back home!")
+                        type_text(
+                            "Following the path, you find your way back home!")
                         print()
                         type_text(
                             "Congratulations! You have successfully completed the game."
@@ -1424,14 +1493,16 @@ def play_game():
                         play_again()
 
                 elif desl_des_1_ch1_ch1_ch1 in ["b", "B"]:
-                    type_text("You decided to look for a way out of the forest.")
+                    type_text(
+                        "You decided to look for a way out of the forest.")
                     print()
                     point_indictor(random.randint(1, 25))
                     type_text(
                         "After some time, you find a path that leads you out of the forest."
                     )
                     print()
-                    type_text("Following the path, you find your way back home!")
+                    type_text(
+                        "Following the path, you find your way back home!")
                     print()
                     type_text(
                         "Congratulations! You have successfully completed the game."
@@ -1456,7 +1527,8 @@ def play_game():
                 print()
                 sleep(1)
 
-                type_text("You encounter various challenges along the hidden path.")
+                type_text(
+                    "You encounter various challenges along the hidden path.")
                 print()
                 type_text(
                     "With determination and quick thinking, you overcome each obstacle."
@@ -1466,7 +1538,8 @@ def play_game():
                 print()
                 type_text("To your surprise, it leads you back home!")
                 print()
-                type_text("Congratulations! You have successfully completed the game.")
+                type_text(
+                    "Congratulations! You have successfully completed the game.")
                 print()
                 sleep(1)
                 text_coloric("Game Over!", text_c="\033[92m")
@@ -1481,7 +1554,8 @@ def play_game():
                 "As you walk along the right path, you notice a glimmering object in the distance."
             )
             print()
-            type_text("Curiosity piques your interest, and you decide to investigate.")
+            type_text(
+                "Curiosity piques your interest, and you decide to investigate.")
             print()
             sleep(1)
 
@@ -1492,7 +1566,8 @@ def play_game():
             sleep(1)
             point_indictor(50)
             print()
-            type_text("Congratulations! You found a hidden cave and gained 50 points!")
+            type_text(
+                "Congratulations! You found a hidden cave and gained 50 points!")
             print()
             type_text("Feeling triumphant, you continue your journey.")
             print()
@@ -1514,7 +1589,8 @@ def play_game():
                 print()
                 type_text("You have found your way back home!")
                 print()
-                type_text("Congratulations! You have successfully completed the game.")
+                type_text(
+                    "Congratulations! You have successfully completed the game.")
                 print()
                 sleep(1)
                 text_coloric("Game Over!", text_c="\033[92m")
